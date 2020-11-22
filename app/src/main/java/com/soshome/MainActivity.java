@@ -2,16 +2,19 @@ package com.soshome;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 public class MainActivity extends AppCompatActivity {
 
 
     WebView miVisorWeb;
-    String url = "http://localhost/base/soshome/public/";
+    String url = "http://192.168.1.2/base/soshome/public/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +25,12 @@ public class MainActivity extends AppCompatActivity {
         miVisorWeb = (WebView) findViewById(R.id.visorWeb);
         final WebSettings ajustesVisorWeb = miVisorWeb.getSettings();
         ajustesVisorWeb.setJavaScriptEnabled(true);
+        miVisorWeb.setWebViewClient(new WebViewClient());
         miVisorWeb.loadUrl(url);
 
 
-    }
+        }
+
 
     //Impedir que el botón Atrás cierre la aplicación
     public boolean onKeyDown(int keyCode, KeyEvent event) {
