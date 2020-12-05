@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     WebView miVisorWeb;
-    String url = "http://192.168.1.2/base/soshome/public/";
+    String url = "http://www.soshome.com.ar/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
