@@ -6,12 +6,13 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 public class MainActivity extends AppCompatActivity {
 
 
     WebView miVisorWeb;
-    String url = "http://localhost/base/soshome/public/";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
         miVisorWeb = (WebView) findViewById(R.id.visorWeb);
         final WebSettings ajustesVisorWeb = miVisorWeb.getSettings();
         ajustesVisorWeb.setJavaScriptEnabled(true);
-        miVisorWeb.loadUrl(url);
+        miVisorWeb.setWebViewClient(new WebViewClient());
+        miVisorWeb.loadUrl("http://www.soshome.com.ar/");
 
 
     }
