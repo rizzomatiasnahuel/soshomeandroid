@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         final WebSettings ajustesVisorWeb = miVisorWeb.getSettings();
         ajustesVisorWeb.setJavaScriptEnabled(true);
         miVisorWeb.setWebViewClient(new WebViewClient());
-        miVisorWeb.loadUrl("http://www.soshome.com.ar/");
+        miVisorWeb.loadUrl("https://soshome.com.ar/");
 
 
     }
