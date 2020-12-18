@@ -1,7 +1,10 @@
 package com.soshome;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.webkit.WebSettings;
@@ -19,31 +22,31 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if (ContextCompat.checkSelfPermission(this,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    android.Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE},
+                        1);
+            }
+        }
 
         miVisorWeb = (WebView) findViewById(R.id.visorWeb);
+        miVisorWeb.getSettings().setDomStorageEnabled(true);
+
+
         final WebSettings ajustesVisorWeb = miVisorWeb.getSettings();
         ajustesVisorWeb.setJavaScriptEnabled(true);
+        miVisorWeb.getSettings().setAllowFileAccess(true);
+
         miVisorWeb.setWebViewClient(new WebViewClient());
         miVisorWeb.loadUrl("https://soshome.com.ar/");
 
 
     }
 
-    //Impedir que el botón Atrás cierre la aplicación
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        WebView miVisorWeb;
-        miVisorWeb = (WebView) findViewById(R.id.visorWeb);
-        if (event.getAction() == KeyEvent.ACTION_DOWN) {
-            switch (keyCode) {
-                case KeyEvent.KEYCODE_BACK:
-                    if (miVisorWeb.canGoBack()) {
-                        miVisorWeb.goBack();
-                    } else {
-                        finish();
-                    }
-                    return true;
-            }
-        }
-        return super.onKeyDown(keyCode, event);
-}
+
 }
